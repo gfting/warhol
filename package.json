@@ -1,0 +1,26 @@
+{
+	"name": "warhol",
+	"version": "1.0.0",
+	"description": "canned responses for slack",
+	"main": "index.js",
+	"dependencies": {},
+	"devDependencies": {},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/gfting/warhol.git"
+	},
+	"keywords": [
+		"slack",
+		"bot"
+	],
+	"author": "Gabriel Ting <gabrielting.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/gfting/warhol/issues"
+	},
+	"homepage": "https://github.com/gfting/warhol#readme"
+}
