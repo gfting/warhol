@@ -23,6 +23,15 @@ app.event("app_home_opened", ({ event, say }) => {
 	}
 });
 
+// The echo command simply echoes on command
+app.command("/echo", async ({ command, ack, say }) => {
+	// Acknowledge command request
+	ack();
+
+	// echo back the command
+	say(`${command.text}`);
+});
+
 // Start your app
 (async () => {
 	await app.start(process.env.PORT || 3000);
