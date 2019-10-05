@@ -36,8 +36,9 @@ app.action("button_click", ({ body, ack, say }) => {
 });
 
 // Listens for the warhol slash command
-app.command("/warhol", async ({ command, ack, say }) => {
+app.command("/warhol", async ({ payload, command, ack, say }) => {
 	ack();
+	console.log(payload);
 	// say() sends a message to the channel where the event was triggered
 	say({
 		blocks: [
@@ -113,6 +114,23 @@ app.command("/warhol", async ({ command, ack, say }) => {
 			},
 			{
 				type: "divider"
+			},
+			{
+				type: "section",
+				text: {
+					type: "mrkdwn",
+					text:
+						"This would be a message text that you can send if this is clicked"
+				},
+				accessory: {
+					type: "button",
+					text: {
+						type: "plain_text",
+						text: "Send me!",
+						emoji: true
+					},
+					value: "click_me_123"
+				}
 			}
 		]
 	});
