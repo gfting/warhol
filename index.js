@@ -140,13 +140,13 @@ app.command("/warhol", async ({ payload, command, ack, say }) => {
 	});
 });
 
-// Your middleware will only be called when the action_id matches 'select_user' AND the block_id matches 'assign_ticket'
+// Your middleware will only be called when block_id = "send_button"
 app.action(
 	{ block_id: "send_button" },
 	async ({ action, ack, context, say }) => {
 		ack();
 		console.log(action);
-		console.loog(action.value);
+		console.log(action.value);
 		try {
 			const result = await app.client.reactions.add({
 				token: context.botToken,
