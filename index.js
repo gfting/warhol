@@ -24,7 +24,7 @@ app.event("app_home_opened", ({ event, say }) => {
 });
 
 // The echo command simply echoes on command
-app.command("/echo", async ({ command, ack, say }) => {
+app.command("/warhol", async ({ command, ack, say }) => {
 	// Acknowledge command request
 	ack();
 
