@@ -154,6 +154,7 @@ app.action(
 			});
 			result();
 			say("you clicked a button!");
+			console.log(result);
 		} catch (error) {
 			console.error(error);
 		}
