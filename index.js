@@ -148,13 +148,13 @@ app.action(
 		console.log(action);
 		console.log(action.value);
 		try {
-			const result = await app.client.reactions.add({
-				token: context.botToken,
-				name: "white_check_mark",
-				timestamp: action.ts,
-				channel: action.channel.id
-			});
-			result();
+			// const result = await app.client.reactions.add({
+			// 	token: context.botToken,
+			// 	name: "white_check_mark",
+			// 	timestamp: action.ts,
+			// 	channel: action.channel.id
+			// });
+			// result();
 			return say(action.value);
 		} catch (error) {
 			console.error(error);
