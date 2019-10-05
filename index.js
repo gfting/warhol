@@ -145,6 +145,7 @@ app.action(
 	{ block_id: "send_button" },
 	async ({ action, ack, context, say }) => {
 		ack();
+		console.log(action);
 		try {
 			const result = await app.client.reactions.add({
 				token: context.botToken,
