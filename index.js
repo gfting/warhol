@@ -43,7 +43,7 @@ app.command("/warhol", async ({ payload, command, ack, say }) => {
 	app.client.chat.postEphemeral({
 		token: process.env.SLACK_BOT_TOKEN,
 		channel: payload.channel,
-		user: payload.user,
+		user: payload.user_id,
 		attachments: [{ pretext: "pre-hello", text: "text-world" }],
 		text: `Hello ${user}, please select the message you could like to send:`,
 		blocks: [
