@@ -41,7 +41,7 @@ app.command("/warhol", async ({ payload, command, ack, say }) => {
 	console.log(payload);
 	// say() sends a message to the channel where the event was triggered
 	app.client.chat.postEphemeral({
-		token: SLACK_BOT_TOKEN,
+		token: process.env.SLACK_BOT_TOKEN,
 		channel: payload.channel,
 		user: payload.user,
 		text: `Hello ${user}, please select the message you could like to send:`,
