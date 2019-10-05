@@ -44,18 +44,8 @@ app.command("/warhol", async ({ payload, command, ack, say }) => {
 		token: SLACK_BOT_TOKEN,
 		channel: payload.channel,
 		user: payload.user,
+		text: `Hello ${user}, please select the message you could like to send:`,
 		blocks: [
-			{
-				type: "section",
-				text: {
-					type: "mrkdwn",
-					text:
-						"Hello, Ruby! *What message would you like to send?*\n\n *Please select a restaurant:*"
-				}
-			},
-			{
-				type: "divider"
-			},
 			{
 				type: "section",
 				text: {
