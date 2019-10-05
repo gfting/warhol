@@ -141,20 +141,24 @@ app.command("/warhol", async ({ payload, command, ack, say }) => {
 });
 
 // Your middleware will only be called when the action_id matches 'select_user' AND the block_id matches 'assign_ticket'
-app.action({ block_id: "send_button" }, async ({ action, ack, context }) => {
-	ack();
-	try {
-		const result = await app.client.reactions.add({
-			token: context.botToken,
-			name: "white_check_mark",
-			timestamp: action.ts,
-			channel: action.channel.id
-		});
-		result();
-	} catch (error) {
-		console.error(error);
+app.action(
+	{ block_id: "send_button" },
+	async ({ action, ack, context, say }) => {
+		ack();
+		try {
+			const result = await app.client.reactions.add({
+				token: context.botToken,
+				name: "white_check_mark",
+				timestamp: action.ts,
+				channel: action.channel.id
+			});
+			result();
+			say("you clicked a button!");
+		} catch (error) {
+			console.error(error);
+		}
 	}
-});
+);
 
 // app.action("button_click", ({ body, ack, say }) => {
 // 	// Acknowledge the action
