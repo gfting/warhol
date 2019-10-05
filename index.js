@@ -82,6 +82,7 @@ app.command("/warhol", async ({ payload, command, ack, say }) => {
 			},
 			{
 				type: "actions",
+				block_id: "send_button",
 				elements: [
 					{
 						type: "button",
@@ -90,7 +91,8 @@ app.command("/warhol", async ({ payload, command, ack, say }) => {
 							text: "Farmhouse",
 							emoji: true
 						},
-						value: "click_me_123"
+						value:
+							"They do have some vegan options, like the roti and curry, plus they have a ton of salad stuff and noodles can be ordered without meat!! They have something for everyone here"
 					},
 					{
 						type: "button",
@@ -99,7 +101,8 @@ app.command("/warhol", async ({ payload, command, ack, say }) => {
 							text: "Kin Khao",
 							emoji: true
 						},
-						value: "click_me_123"
+						value:
+							"The sticky rice also goes wonderfully with the caramelized pork belly, which is absolutely melt-in-your-mouth and so soft."
 					},
 					{
 						type: "button",
@@ -108,7 +111,8 @@ app.command("/warhol", async ({ payload, command, ack, say }) => {
 							text: "Ler Ros",
 							emoji: true
 						},
-						value: "click_me_123"
+						value:
+							"I would really recommend the  Yum Koh Moo Yang - Spicy lime dressing and roasted quick marinated pork shoulder, basil leaves, chili & rice powder."
 					}
 				]
 			},
@@ -134,6 +138,22 @@ app.command("/warhol", async ({ payload, command, ack, say }) => {
 			}
 		]
 	});
+});
+
+// Your middleware will only be called when the action_id matches 'select_user' AND the block_id matches 'assign_ticket'
+app.action({ block_id: "send_button" }, async ({ action, ack, context }) => {
+	ack();
+	try {
+		const result = await app.client.reactions.add({
+			token: context.botToken,
+			name: "white_check_mark",
+			timestamp: action.ts,
+			channel: action.channel.id
+		});
+		result();
+	} catch (error) {
+		console.error(error);
+	}
 });
 
 // app.action("button_click", ({ body, ack, say }) => {
