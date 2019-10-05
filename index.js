@@ -37,6 +37,7 @@ app.action("button_click", ({ body, ack, say }) => {
 
 // Listens for the warhol slash command
 app.command("warhol", ({ message, say }) => {
+	ack();
 	// say() sends a message to the channel where the event was triggered
 	say({
 		blocks: [
