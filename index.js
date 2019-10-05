@@ -36,7 +36,7 @@ app.action("button_click", ({ body, ack, say }) => {
 });
 
 // Listens for the warhol slash command
-app.command("warhol", ({ message, say }) => {
+app.command("/warhol", async ({ command, ack, say }) => {
 	ack();
 	// say() sends a message to the channel where the event was triggered
 	say({
@@ -118,11 +118,11 @@ app.command("warhol", ({ message, say }) => {
 	});
 });
 
-app.action("button_click", ({ body, ack, say }) => {
-	// Acknowledge the action
-	ack();
-	say(`<@${body.user.id}> clicked the button`);
-});
+// app.action("button_click", ({ body, ack, say }) => {
+// 	// Acknowledge the action
+// 	ack();
+// 	say(`<@${body.user.id}> clicked the button`);
+// });
 
 (async () => {
 	// Start your app
