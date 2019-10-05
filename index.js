@@ -146,6 +146,7 @@ app.action(
 	async ({ action, ack, context, say }) => {
 		ack();
 		console.log(action);
+		console.loog(action.value);
 		try {
 			const result = await app.client.reactions.add({
 				token: context.botToken,
@@ -154,8 +155,7 @@ app.action(
 				channel: action.channel.id
 			});
 			result();
-			say("you clicked a button!");
-			console.log(result);
+			return say(action.value);
 		} catch (error) {
 			console.error(error);
 		}
