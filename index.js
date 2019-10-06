@@ -267,11 +267,11 @@ app.action(
 		ack();
 		console.log(action);
 		console.log(action.value);
+		console.log(payload);
 		try {
 			app.client.chat.postMessage({
 				token: process.env.USER_TOKEN,
 				channel: payload.channel_id,
-				user: payload.user_id,
 				as_user: true,
 				text: action.value
 			});
