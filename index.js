@@ -249,7 +249,7 @@ app.command("/warhol", async ({ payload, command, ack, say }) => {
 // middleware will only be called when block_id = "send_button"
 //{ action, ack, context, say, payload, message }
 app.action({ block_id: "send_button" }, async object => {
-	ack();
+	object.ack();
 	console.log(object);
 	// console.log(action);
 	// console.log(context);
@@ -261,9 +261,9 @@ app.action({ block_id: "send_button" }, async object => {
 		await app.client.chat
 			.postMessage({
 				token: process.env.USER_TOKEN,
-				channel: payload.channel_id,
+				channel: object.payload.channel_id,
 				as_user: true,
-				text: action.value
+				text: object.taction.value
 			})
 			.then(response => console.log("response succeeded"))
 			.catch(error => console.log(error));
