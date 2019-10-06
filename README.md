@@ -19,6 +19,18 @@ Provides canned responses for slack through an ephemeral message menu on slash c
 - Anything that gets `console.log()`ed in Slack gets sent to the server, so you'd have to check the logs on whatever hosting you are using. I personally used Heroku (my first time using Heroku), but it's totally up to you! 
   - Store the secrets somewhere secure, as these tokens are actually pretty powerful in terms of what actions you can do. I initially had a global `hello warhol` command across all channels and DMs that would create a clicker button everywhere
 
+## Features
+- Warhol listens for two main kick-off actions:
+  - A slash command `/warhol`
+  - Any message in any channel that includes the text `hello warhol`
+### `/warhol`
+- After the slash command happens, warhol grabs the context of the message and then presents an ephemeral menu for the user–that is, a menu of options that's only visible to the user
+- The user can then click on any of the menu buttons, which triggers another action listener
+  - On receiving the action, the action listener will grab the user's auth token and then send the value of the corresponding button to the original location of the message, but it appears like it's the user–this is officially called "user impersonation" according to the docs. 
+### `hello warhol`
+- This mostly came from the Bolt initial tutorial; warhol just listens for messages in channels that include `hello warhol` somewhere in it and then it'll send back a message in the channel with a button that on-click sends an action back to warhol
+  - When warhol gets this action, it'll send a message in the channel with the user that clicked the button such as `@Gabriel Ting clicked the button`
+
 # Contributing
 - Pull requests are welcome. Since the Bolt framework is relatively new, I found that weren't a lot of great examples on things like ephemeral messages using Bolt, so I combined elements of Bolt and the Slack Web API
 # Next Steps
