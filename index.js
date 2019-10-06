@@ -46,7 +46,92 @@ app.command("/warhol", async ({ payload, command, ack, say }) => {
 			channel: payload.channel_id,
 			user: payload.user_id,
 			attachments: [{ pretext: "pre-hello", text: "text-world" }],
-			text: `Hello please select the message you could like to send:`
+			text: `Hello ${payload.user_id}, please select the message you could like to send:`,
+			blocks: [
+				{
+					type: "section",
+					text: {
+						type: "mrkdwn",
+						text:
+							"*Farmhouse Thai Cuisine*\n:star::star::star::star: 1528 reviews\n They do have some vegan options, like the roti and curry, plus they have a ton of salad stuff and noodles can be ordered without meat!! They have something for everyone here"
+					}
+				},
+				{
+					type: "section",
+					text: {
+						type: "mrkdwn",
+						text:
+							"*Kin Khao*\n:star::star::star::star: 1638 reviews\n The sticky rice also goes wonderfully with the caramelized pork belly, which is absolutely melt-in-your-mouth and so soft."
+					}
+				},
+				{
+					type: "section",
+					text: {
+						type: "mrkdwn",
+						text:
+							"*Ler Ros*\n:star::star::star::star: 2082 reviews\n I would really recommend the  Yum Koh Moo Yang - Spicy lime dressing and roasted quick marinated pork shoulder, basil leaves, chili & rice powder."
+					}
+				},
+				{
+					type: "divider"
+				},
+				{
+					type: "actions",
+					block_id: "send_button",
+					elements: [
+						{
+							type: "button",
+							text: {
+								type: "plain_text",
+								text: "Farmhouse",
+								emoji: true
+							},
+							value:
+								"They do have some vegan options, like the roti and curry, plus they have a ton of salad stuff and noodles can be ordered without meat!! They have something for everyone here"
+						},
+						{
+							type: "button",
+							text: {
+								type: "plain_text",
+								text: "Kin Khao",
+								emoji: true
+							},
+							value:
+								"The sticky rice also goes wonderfully with the caramelized pork belly, which is absolutely melt-in-your-mouth and so soft."
+						},
+						{
+							type: "button",
+							text: {
+								type: "plain_text",
+								text: "Ler Ros",
+								emoji: true
+							},
+							value:
+								"I would really recommend the  Yum Koh Moo Yang - Spicy lime dressing and roasted quick marinated pork shoulder, basil leaves, chili & rice powder."
+						}
+					]
+				},
+				{
+					type: "divider"
+				},
+				{
+					type: "section",
+					text: {
+						type: "mrkdwn",
+						text:
+							"This would be a message text that you can send if this is clicked"
+					},
+					accessory: {
+						type: "button",
+						text: {
+							type: "plain_text",
+							text: "Send me!",
+							emoji: true
+						},
+						value: "click_me_123"
+					}
+				}
+			]
 		})
 		.then(response => {
 			if (response.ok) {
@@ -57,91 +142,6 @@ app.command("/warhol", async ({ payload, command, ack, say }) => {
 			console.log(error);
 		});
 
-	// blocks: [
-	// 	{
-	// 		type: "section",
-	// 		text: {
-	// 			type: "mrkdwn",
-	// 			text:
-	// 				"*Farmhouse Thai Cuisine*\n:star::star::star::star: 1528 reviews\n They do have some vegan options, like the roti and curry, plus they have a ton of salad stuff and noodles can be ordered without meat!! They have something for everyone here"
-	// 		}
-	// 	},
-	// 	{
-	// 		type: "section",
-	// 		text: {
-	// 			type: "mrkdwn",
-	// 			text:
-	// 				"*Kin Khao*\n:star::star::star::star: 1638 reviews\n The sticky rice also goes wonderfully with the caramelized pork belly, which is absolutely melt-in-your-mouth and so soft."
-	// 		}
-	// 	},
-	// 	{
-	// 		type: "section",
-	// 		text: {
-	// 			type: "mrkdwn",
-	// 			text:
-	// 				"*Ler Ros*\n:star::star::star::star: 2082 reviews\n I would really recommend the  Yum Koh Moo Yang - Spicy lime dressing and roasted quick marinated pork shoulder, basil leaves, chili & rice powder."
-	// 		}
-	// 	},
-	// 	{
-	// 		type: "divider"
-	// 	},
-	// 	{
-	// 		type: "actions",
-	// 		block_id: "send_button",
-	// 		elements: [
-	// 			{
-	// 				type: "button",
-	// 				text: {
-	// 					type: "plain_text",
-	// 					text: "Farmhouse",
-	// 					emoji: true
-	// 				},
-	// 				value:
-	// 					"They do have some vegan options, like the roti and curry, plus they have a ton of salad stuff and noodles can be ordered without meat!! They have something for everyone here"
-	// 			},
-	// 			{
-	// 				type: "button",
-	// 				text: {
-	// 					type: "plain_text",
-	// 					text: "Kin Khao",
-	// 					emoji: true
-	// 				},
-	// 				value:
-	// 					"The sticky rice also goes wonderfully with the caramelized pork belly, which is absolutely melt-in-your-mouth and so soft."
-	// 			},
-	// 			{
-	// 				type: "button",
-	// 				text: {
-	// 					type: "plain_text",
-	// 					text: "Ler Ros",
-	// 					emoji: true
-	// 				},
-	// 				value:
-	// 					"I would really recommend the  Yum Koh Moo Yang - Spicy lime dressing and roasted quick marinated pork shoulder, basil leaves, chili & rice powder."
-	// 			}
-	// 		]
-	// 	},
-	// 	{
-	// 		type: "divider"
-	// 	},
-	// 	{
-	// 		type: "section",
-	// 		text: {
-	// 			type: "mrkdwn",
-	// 			text:
-	// 				"This would be a message text that you can send if this is clicked"
-	// 		},
-	// 		accessory: {
-	// 			type: "button",
-	// 			text: {
-	// 				type: "plain_text",
-	// 				text: "Send me!",
-	// 				emoji: true
-	// 			},
-	// 			value: "click_me_123"
-	// 		}
-	// 	}
-	// ];
 	// say({
 	// 	blocks: [
 	// 		{
