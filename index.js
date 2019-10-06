@@ -45,7 +45,7 @@ app.command("/warhol", async ({ payload, command, ack, say }) => {
 		channel: payload.channel,
 		user: payload.user_id,
 		attachments: [{ pretext: "pre-hello", text: "text-world" }],
-		text: `Hello ${payloaduser.id}, please select the message you could like to send:`,
+		text: `Hello ${payload.user.id}, please select the message you could like to send:`,
 		blocks: [
 			{
 				type: "section",
