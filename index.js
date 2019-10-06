@@ -116,6 +116,7 @@ app.command("/warhol", async ({ payload, command, ack, say }) => {
 				},
 				{
 					type: "section",
+					block_id: "direct_send",
 					text: {
 						type: "mrkdwn",
 						text:
@@ -135,6 +136,7 @@ app.command("/warhol", async ({ payload, command, ack, say }) => {
 		})
 		.then(response => {
 			if (response.ok) {
+				ack();
 				console.log("Success!");
 			}
 		})
@@ -252,6 +254,27 @@ app.action(
 		console.log(action.value);
 		try {
 			return say(action.value);
+		} catch (error) {
+			console.error(error);
+		}
+	}
+);
+
+app.action(
+	{ block_id: "direct_send" },
+	async ({ action, ack, context, say, payload }) => {
+		ack();
+		console.log(action);
+		console.log(action.value);
+		try {
+			app.client.chat.postMessage({
+				token: process.env.SLACK_BOT_TOKEN,
+				channel: payload.channel_id,
+				user: payload.user_id,
+				as_user: true,
+				text: action.value
+			});
+			//return say(action.value);
 		} catch (error) {
 			console.error(error);
 		}
