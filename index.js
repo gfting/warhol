@@ -141,6 +141,7 @@ app.command("/warhol", async ({ payload, command, ack, say }) => {
 			}
 		})
 		.catch(error => {
+			ack();
 			console.log(error);
 		});
 
@@ -268,7 +269,7 @@ app.action(
 		console.log(action.value);
 		try {
 			app.client.chat.postMessage({
-				token: process.env.SLACK_BOT_TOKEN,
+				token: process.env.USER_TOKEN,
 				channel: payload.channel_id,
 				user: payload.user_id,
 				as_user: true,
@@ -291,5 +292,5 @@ app.action(
 	// Start your app
 	await app.start(process.env.PORT || 3000);
 
-	console.log("⚡️ Bolt app is running!");
+	console.log("⚡️ Warhol bolt app is running!");
 })();
