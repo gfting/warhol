@@ -246,33 +246,32 @@ app.command("/warhol", async ({ payload, command, ack, say }) => {
 	// });
 });
 
-// Your middleware will only be called when block_id = "send_button"
-app.action(
-	{ block_id: "send_button" },
-	async ({ action, ack, context, say, payload, message }) => {
-		ack();
-		console.log(action);
-		console.log(context);
-		console.log(payload);
-		console.log(action.value);
-		console.log(action.channel);
-		console.log(message);
-		try {
-			await app.client.chat
-				.postMessage({
-					token: process.env.USER_TOKEN,
-					channel: payload.channel_id,
-					as_user: true,
-					text: action.value
-				})
-				.then(response => console.log("response succeeded"))
-				.catch(error => console.log(error));
-			//return say(action.value);
-		} catch (error) {
-			console.error(error);
-		}
+// middleware will only be called when block_id = "send_button"
+//{ action, ack, context, say, payload, message }
+app.action({ block_id: "send_button" }, async object => {
+	ack();
+	console.log(object);
+	// console.log(action);
+	// console.log(context);
+	// console.log(payload);
+	// console.log(action.value);
+	// console.log(action.channel);
+	// console.log(message);
+	try {
+		await app.client.chat
+			.postMessage({
+				token: process.env.USER_TOKEN,
+				channel: payload.channel_id,
+				as_user: true,
+				text: action.value
+			})
+			.then(response => console.log("response succeeded"))
+			.catch(error => console.log(error));
+		//return say(action.value);
+	} catch (error) {
+		console.error(error);
 	}
-);
+});
 
 app.action(
 	{ block_id: "direct_send" },
